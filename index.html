@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BADABOOM ! ! </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f4f4f4;
+            z-index: 9999;
+        }
+
+        .iframe-wrapper {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px 15px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .disable-text-selection {
+            user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            -moz-user-select: none;
+        }
+    </style>
+</head>
+<body class="disable-text-selection">
+
+    <button id="openIframeBtn">Open Website</button>
+
+    <div id="iframeContainer" class="container">
+        <button class="close-button" id="closeIframeBtn">Close</button>
+        <iframe id="iframe" class="iframe-wrapper" sandbox="allow-scripts allow-same-origin"></iframe>
+    </div>
+
+    <script>
+        const iframeContainer = document.getElementById("iframeContainer");
+        const iframe = document.getElementById("iframe");
+        const openIframeBtn = document.getElementById("openIframeBtn");
+        const closeIframeBtn = document.getElementById("closeIframeBtn");
+
+        openIframeBtn.addEventListener("click", () => {
+            iframe.src = "https://google.com"; // Replace with your desired URL
+            iframeContainer.style.display = "block";
+        });
+
+        closeIframeBtn.addEventListener("click", () => {
+            iframe.src = ""; // Clear the iframe src to stop loading
+            iframeContainer.style.display = "none";
+        });
+
+        // Disable right-clicking
+        document.addEventListener("contextmenu", (event) => event.preventDefault());
+    </script>
+</body>
+  </html>
